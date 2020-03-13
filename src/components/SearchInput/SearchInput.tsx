@@ -10,6 +10,8 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 import { Formik } from "formik";
 import { object, string } from "yup";
+import { useDispatch } from "react-redux";
+
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -38,16 +40,24 @@ const validationSchema = object().shape({
 
 const SearchInput = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
 
-    const handleSubmit = () => {
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
 
+        const dateTime = new Date();
     }
-    
+
     return (
-        // <form noValidate autoComplete="off">
-        //     <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        // </form>
         <Paper component="form" className={classes.root}>
+            <Formik 
+                initialValues={{}}
+                validationSchema={validationSchema}
+                onSubmit={handleSubmit}
+            >
+
+            </Formik>
+            
             <InputBase
                 className={classes.input}
                 placeholder="Search Images"
