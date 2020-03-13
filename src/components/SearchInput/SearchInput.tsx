@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Paper,
     InputBase,
     Theme,
     Divider,
     IconButton,
+    TextField,
+    Grid,
     makeStyles
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
@@ -12,17 +14,19 @@ import { Formik } from "formik";
 import { object, string } from "yup";
 import { useDispatch } from "react-redux";
 
+import addRecord from '../../actions/addRecord'
+
 
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        padding: "2px 4px",
-        display: "flex",
-        alignItems: "center",
-        width: 400
+        margin: "0 auto",
+        padding: theme.spacing(1),
+        width: '60%'
     },
     input: {
-        marginLeft: theme.spacing(1),
-        flex: 1
+        marginLeft: theme.spacing(3),
+        marginRight: theme.spacing(2),
+        flexGrow: 1
     },
     iconButton: {
         padding: 10
@@ -41,36 +45,51 @@ const validationSchema = object().shape({
 const SearchInput = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const [inputValue, setInputValue] = useState('');
+
+    const handleChange = (event: any) => {
+        setInputValue(event.target.value);
+    }
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
-
-        const dateTime = new Date();
+        const record = {
+            record: inputValue,
+            timestamp: (new Date()).toString()
+        }
+        dispatch(addRecord(record));
     }
 
     return (
-        <Paper component="form" className={classes.root}>
-            <Formik 
+        <Paper className={classes.root}>
+            <Formik
                 initialValues={{}}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
             >
-
+                {props => {
+                    return (
+                        <form onSubmit={handleSubmit}>
+                            <Grid container wrap="wrap" >
+                                <TextField
+                                    className={classes.input}
+                                    placeholder="Search Images"
+                                    onChange={handleChange}
+                                />
+                                <Divider className={classes.divider} orientation="vertical" />
+                                <IconButton
+                                    type="submit"
+                                    className={classes.iconButton}
+                                    aria-label="search"
+                                >
+                                    <SearchIcon />
+                                </IconButton>
+                            </Grid>
+                        </form>
+                    )
+                }
+                }
             </Formik>
-            
-            <InputBase
-                className={classes.input}
-                placeholder="Search Images"
-                inputProps={{ "aria-label": "search google maps" }}
-            />
-            <Divider className={classes.divider} orientation="vertical" />
-            <IconButton
-                type="submit"
-                className={classes.iconButton}
-                aria-label="search"
-            >
-                <SearchIcon />
-            </IconButton>
         </Paper>
     )
 }

@@ -13,7 +13,10 @@ const store = configureStore();
 
 const useStyles = makeStyles(() => ({
   root: {
-    padding: "5rem 3rem"
+    padding: "5rem 3rem",
+    display: 'grid',
+    flexDirection: 'column',
+    alignItems: 'center'
   }
 }));
 
