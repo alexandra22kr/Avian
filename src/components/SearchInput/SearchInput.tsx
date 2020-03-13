@@ -55,7 +55,7 @@ const SearchInput = () => {
         event.preventDefault();
         const record = {
             record: inputValue,
-            timestamp: (new Date()).toString()
+            timestamp: Number(new Date().toISOString())
         }
         dispatch(addRecord(record));
     }

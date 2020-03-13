@@ -1,5 +1,5 @@
 import React from 'react'
-import { 
+import {
     makeStyles,
     Table,
     TableBody,
@@ -9,6 +9,8 @@ import {
     TableRow,
     Paper
 } from '@material-ui/core';
+
+import IHistoryTable from './IHistoryTable';
 
 const useStyles = makeStyles({
     table: {
@@ -29,8 +31,9 @@ const rows = [
 ];
 
 
-const HistoryTable = () => {
-    const classes = useStyles()
+const HistoryTable = (props: IHistoryTable) => {
+    const classes = useStyles();
+
 
     return (
         <TableContainer component={Paper}>
@@ -43,13 +46,14 @@ const HistoryTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map(row => (
-                        <TableRow key={row.name}>
+                    {props.records.map(record => (
+                        <TableRow >
                             <TableCell component="th" scope="row">
-                                {row.name}
+                                {record.record}
                             </TableCell>
-                            <TableCell>{row.calories}</TableCell>
-                            <TableCell>{row.fat}</TableCell>
+                            <TableCell>{new Date((record.timestamp as number) * 1000).getDate()}</TableCell>
+                            
+                            <TableCell>{new Date((record.timestamp as number) * 1000).getTime()}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

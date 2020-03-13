@@ -1,5 +1,5 @@
 import { ADD_RECORD } from "../constants/actionConstants";
-import IRecord from "./interfaces/IRecord";
+import IRecord from "../reducers/interfaces/IRecord";
 
 const addRecord = (newRecord: IRecord) => ({
   type: ADD_RECORD,

@@ -1,4 +1,4 @@
-import IRecord from "./IRecord";
+import IRecord from "../../reducers/interfaces/IRecord";
 
 export default interface IAddRecord {
   type: String;

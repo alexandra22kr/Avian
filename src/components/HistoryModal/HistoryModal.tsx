@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import {
     Dialog,
     DialogTitle,
@@ -21,6 +22,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { TransitionProps } from '@material-ui/core/transitions';
 
 import HistoryTable from '../HistoryTable/HistoryTable';
+import IRootState from '../../reducers/interfaces/IRootState';
 
 const useStyles = makeStyles((theme: Theme) => ({
     appBar: {
@@ -36,6 +38,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const HistoryModal = () => {
     const classes = useStyles();
+    const records = useSelector((state: IRootState) => state.history)
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -71,7 +74,7 @@ const HistoryModal = () => {
                         </Button>
                     </Toolbar>
                 </AppBar>
-                <HistoryTable />
+                <HistoryTable records={records} />
             </Dialog>
         </div>
     )

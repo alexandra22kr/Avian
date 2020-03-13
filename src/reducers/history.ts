@@ -4,7 +4,7 @@ import {
   DELETE_ALL_RECORDS
 } from "../constants/actionConstants";
 import IAddRecord from "../actions/interfaces/IAddRecord";
-import IRecord from "../actions/interfaces/IRecord";
+import IRecord from "./interfaces/IRecord";
 
 const initialState: IRecord[] = [];
 
