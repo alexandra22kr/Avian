@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ThemeProvider, Container } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+import theme from "./theme";
+import SearchInput from "./components/SearchInput/SearchInput";
+import ImagesList from "./components/ImagesList/ImagesList";
+
+const useStyles = makeStyles(() => ({
+  root: {
+    padding: "5rem 3rem"
+  }
+}));
 
 function App() {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container className={classes.root}>
+        <SearchInput />
+        <ImagesList />
+      </Container>
+    </ThemeProvider>
   );
 }
 
