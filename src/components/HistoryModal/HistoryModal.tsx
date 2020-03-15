@@ -2,27 +2,21 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import {
     Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogContentText,
     Button,
-    DialogActions,
     Typography,
     IconButton,
     Toolbar,
-    ListItemText,
-    ListItem,
-    Divider,
     AppBar,
-    List,
     Slide
 } from "@material-ui/core";
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
 import { TransitionProps } from '@material-ui/core/transitions';
+import { useDispatch } from "react-redux";
 
 import HistoryTable from '../HistoryTable/HistoryTable';
 import IRootState from '../../reducers/interfaces/IRootState';
+import deleteAllRecords from '../../actions/deleteAllRecords';
 
 const useStyles = makeStyles((theme: Theme) => ({
     appBar: {
@@ -49,7 +43,9 @@ const HistoryModal = () => {
         setOpen(false);
     };
 
-    const handleClear = () => { };
+    const handleClear = () => {
+        useDispatch(deleteAllRecords());
+    };
 
     const Transition = React.forwardRef<unknown, TransitionProps>(function Transition(props, ref) {
         return <Slide direction="up" ref={ref} {...props} />;
@@ -69,7 +65,7 @@ const HistoryModal = () => {
                         <Typography variant="h6" className={classes.title}>
                             Search History
                         </Typography>
-                        <Button autoFocus color="inherit" onClick={handleClose}>
+                        <Button autoFocus color="inherit" onClick={handleClear}>
                             Clear
                         </Button>
                     </Toolbar>
