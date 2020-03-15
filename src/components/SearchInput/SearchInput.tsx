@@ -14,7 +14,8 @@ import { Formik } from "formik";
 import { object, string } from "yup";
 import { useDispatch } from "react-redux";
 
-import addRecord from '../../actions/addRecord'
+import addRecord from '../../actions/addRecord';
+import { useSearchImages } from '../../hooks/useSearchImages';
 
 
 const useStyles = makeStyles((theme: Theme) => ({
