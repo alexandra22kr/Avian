@@ -34,6 +34,7 @@ const HistoryModal = () => {
     const classes = useStyles();
     const records = useSelector((state: IRootState) => state.history)
     const [open, setOpen] = React.useState(false);
+    const dispatch = useDispatch();
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -44,7 +45,8 @@ const HistoryModal = () => {
     };
 
     const handleClear = () => {
-        useDispatch(deleteAllRecords());
+
+        dispatch(deleteAllRecords(Number(new Date().toISOString())));
     };
 
     const Transition = React.forwardRef<unknown, TransitionProps>(function Transition(props, ref) {
