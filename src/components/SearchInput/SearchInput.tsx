@@ -62,7 +62,7 @@ const SearchInput = () => {
     }
 
     return (
-        <Paper className={classes.root}>
+        <Paper className={classes.root} elevation={3}>
             <Formik
                 initialValues={{}}
                 validationSchema={validationSchema}

@@ -45,7 +45,6 @@ const HistoryModal = () => {
     };
 
     const handleClear = () => {
-
         dispatch(deleteAllRecords(Number(new Date().toISOString())));
     };
 
@@ -55,7 +54,7 @@ const HistoryModal = () => {
 
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
                 History
             </Button>
             <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>

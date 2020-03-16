@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeProvider, Container } from "@material-ui/core";
+import { ThemeProvider, Container, AppBar, Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Provider } from "react-redux";
 
@@ -14,9 +14,12 @@ const store = configureStore();
 const useStyles = makeStyles(() => ({
   root: {
     padding: "5rem 3rem",
-    display: 'grid',
-    flexDirection: 'column',
-    alignItems: 'center'
+    display: "grid",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  toolbar: {
+    justifyContent: "flex-end"
   }
 }));
 
@@ -28,9 +31,13 @@ function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
+        <AppBar position="static">
+          <Toolbar className={classes.toolbar}>
+            <HistoryModal />
+          </Toolbar>
+        </AppBar>
         <Container className={classes.root}>
           <SearchInput />
-          <HistoryModal />
           <ImagesList />
         </Container>
       </ThemeProvider>
