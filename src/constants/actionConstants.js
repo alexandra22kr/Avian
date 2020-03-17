@@ -2,6 +2,4 @@ export const ADD_RECORD = "ADD_RECORD";
 export const DELETE_RECORD = "DELETE_RECORD";
 export const DELETE_ALL_RECORDS = "DELETE_ALL_RECORDS";
 
-export const FETCH_LOADING = 'FETCH_IS_LOADING';
-export const FETCH_SUCCESS = 'FETCH_SUCCESS';
-export const FETCH_FAILED = 'FETCH_FAILED';
+export const FETCH_IMAGES = "FETCH_IMAGES";
