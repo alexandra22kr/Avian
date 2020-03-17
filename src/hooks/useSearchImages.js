@@ -4,6 +4,9 @@ import { useDispatch } from "react-redux";
 
 import fetchImages from "../actions/fetchImages";
 
+const pixabyUrl = "https://pixabay.com/api/";
+const pixabyApiKey = "11370902-19d6d747d66b3dd76f6049b2b";
+
 export const useSearchImages = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -22,21 +25,18 @@ export const useSearchImages = () => {
 
     axios({
       method: "GET",
-      url:
-        "https://api.pexels.com/v1/search?query=example+query&per_page=15&page=1"
+      url: `${pixabyUrl}${pixabyApiKey}&q=${query}`
     })
       .then(res => {
-        setImages(prevBooks => {
-          dispatch(
-            fetchImages([
-              ...new Set([...prevBooks, ...res.data.docs.map(b => b.title)])
-            ])
-          );
-          // return [
-          //   ...new Set([...prevBooks, ...res.data.docs.map(b => b.title)])
-          // ];
-        });
-        setHasMore(res.data.docs.length > 0);
+        console.log('res', res);
+        // setImages(prevBooks => {
+        //   dispatch(
+        //     fetchImages([
+        //       ...new Set([...prevBooks, ...res.data.docs.map(b => b.title)])
+        //     ])
+        //   );
+        // });
+        // setHasMore(res.data.docs.length > 0);
         setLoading(false);
       })
       .catch(e => {
